@@ -7,12 +7,12 @@ public class ColorPicker : MonoBehaviour
 {
     public Color[] AvailableColors;
     public Button ColorButtonPrefab;
-    
+
     public Color SelectedColor { get; private set; }
     public System.Action<Color> onColorChanged;
 
     List<Button> m_ColorButtons = new List<Button>();
-    
+
     // Start is called before the first frame update
     public void Init()
     {
@@ -20,7 +20,7 @@ public class ColorPicker : MonoBehaviour
         {
             var newButton = Instantiate(ColorButtonPrefab, transform);
             newButton.GetComponent<Image>().color = color;
-            
+
             newButton.onClick.AddListener(() =>
             {
                 SelectedColor = color;
@@ -30,10 +30,10 @@ public class ColorPicker : MonoBehaviour
                 }
 
                 newButton.interactable = false;
-                
+
                 onColorChanged.Invoke(SelectedColor);
             });
-            
+
             m_ColorButtons.Add(newButton);
         }
     }
